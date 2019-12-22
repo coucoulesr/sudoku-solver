@@ -26,6 +26,10 @@ header p {
     margin-bottom: 20px;
 }
 
+header a {
+    text-decoration: none;
+}
+
 .table {
     margin-bottom: 20px;
 }
@@ -69,13 +73,13 @@ button {
     display: none;
 }
 
-a {
-    color: darkgray;
-    text-decoration: none;
-}
-
 footer {
     position: fixed;
     bottom: 5px;
     right: 5px;
+}
+
+footer a {
+    color: darkgray;
+    text-decoration: none;
 }
