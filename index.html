@@ -1,16 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sudoku</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
     <div class="container">
-        <h1>Sudoku</h1>
+        <header>
+            <h1>Sudoku Solver</h1>
+            <p>
+                This application implements a backtracking algorithm to solve sudoku puzzles.
+                Type your sudoku input into the board below and press the <em>Solve</em> button to see the result.
+                To see a visualization of the backtracking algorithm, toggle the <em>Animate</em> button.
+            </p>
+        </header>
         <div class="table">
             <table>
                 <tr>
@@ -125,6 +130,9 @@
             <h2 class="message"></h2>
         </div>
     </div>
+    <footer>
+        <a href="https://www.racoucoules.com">© 2019 Richard Coucoules</a></footer>
+    </footer>
 </body>
 <script src="js/script.js"></script>
 </html>

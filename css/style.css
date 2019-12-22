@@ -1,4 +1,4 @@
-html, body {
+html {
     width: 100%;
     background: whitesmoke;
 }
@@ -9,6 +9,21 @@ html, body {
     display: flex;
     flex-direction:column; 
     align-items: center;
+}
+
+header {
+    width: 50%;
+    text-align: justify;
+    text-align-last: center;
+}
+
+header h1 {
+    margin-bottom: 0.5rem;
+}
+
+header p {
+    margin-top: 0.5rem;
+    margin-bottom: 20px;
 }
 
 .table {
@@ -52,4 +67,15 @@ button {
 
 .hidden {
     display: none;
+}
+
+a {
+    color: darkgray;
+    text-decoration: none;
+}
+
+footer {
+    position: fixed;
+    bottom: 5px;
+    right: 5px;
 }
