@@ -225,6 +225,7 @@ document.querySelector("#clearbtn").addEventListener("click", () => {
     sudoku.drawBoard()
 });
 
-document.querySelector("#animatedcheckbox").addEventListener("change", () => {
+document.querySelector("#animatebtn").addEventListener("click", () => {
     sudoku.isAnimated = !sudoku.isAnimated
+    document.querySelector("#animatebtn").classList.toggle("btn-activate")
 })

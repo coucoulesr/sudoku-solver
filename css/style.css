@@ -1,3 +1,19 @@
+html, body {
+    width: 100%;
+}
+
+.container {
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction:column; 
+    align-items: center;
+}
+
+.table {
+    margin-bottom: 20px;
+}
+
 table, th, td {
     border: 1px solid black;
     border-collapse: collapse;
@@ -16,4 +32,19 @@ th, td {
     height: 2.5rem;
     text-align: center;
     font-size: 1.125rem;
+}
+
+.controls {
+    font-size: 1.25rem;
+}
+
+button {
+    font-size: 1.125rem;
+    padding: 5px 15px;
+}
+
+.btn-activate {
+    color: white;
+    background-color: forestgreen;
+    border: 2px inset darkolivegreen;
 }

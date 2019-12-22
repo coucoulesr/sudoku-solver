@@ -9,113 +9,117 @@
 </head>
 
 <body>
-    <table>
-        <tr>
-            <td id="t00" contenteditable="true"></td>
-            <td id="t01" contenteditable="true"></td>
-            <td id="t02" class="br" contenteditable="true"></td>
-            <td id="t03" contenteditable="true"></td>
-            <td id="t04" contenteditable="true"></td>
-            <td id="t05" class="br" contenteditable="true"></td>
-            <td id="t06" contenteditable="true"></td>
-            <td id="t07" contenteditable="true"></td>
-            <td id="t08" contenteditable="true"></td>
-        </tr>
-        <tr>
-            <td id="t10" contenteditable="true"></td>
-            <td id="t11" contenteditable="true"></td>
-            <td id="t12" class="br" contenteditable="true"></td>
-            <td id="t13" contenteditable="true"></td>
-            <td id="t14" contenteditable="true"></td>
-            <td id="t15" class="br" contenteditable="true"></td>
-            <td id="t16" contenteditable="true"></td>
-            <td id="t17" contenteditable="true"></td>
-            <td id="t18" contenteditable="true"></td>
-        </tr>
-        <tr>
-            <td id="t20" class="bb" contenteditable="true"></td>
-            <td id="t21" class="bb" contenteditable="true"></td>
-            <td id="t22" class="bb br" contenteditable="true"></td>
-            <td id="t23" class="bb" contenteditable="true"></td>
-            <td id="t24" class="bb" contenteditable="true"></td>
-            <td id="t25" class="bb br" contenteditable="true"></td>
-            <td id="t26" class="bb" contenteditable="true"></td>
-            <td id="t27" class="bb" contenteditable="true"></td>
-            <td id="t28" class="bb" contenteditable="true"></td>
-        </tr>
-        <tr>
-            <td id="t30" contenteditable="true"></td>
-            <td id="t31" contenteditable="true"></td>
-            <td id="t32" class="br" contenteditable="true"></td>
-            <td id="t33" contenteditable="true"></td>
-            <td id="t34" contenteditable="true"></td>
-            <td id="t35" class="br" contenteditable="true"></td>
-            <td id="t36" contenteditable="true"></td>
-            <td id="t37" contenteditable="true"></td>
-            <td id="t38" contenteditable="true"></td>
-        </tr>
-        <tr>
-            <td id="t40" contenteditable="true"></td>
-            <td id="t41" contenteditable="true"></td>
-            <td id="t42" class="br" contenteditable="true"></td>
-            <td id="t43" contenteditable="true"></td>
-            <td id="t44" contenteditable="true"></td>
-            <td id="t45" class="br" contenteditable="true"></td>
-            <td id="t46" contenteditable="true"></td>
-            <td id="t47" contenteditable="true"></td>
-            <td id="t48" contenteditable="true"></td>
-        </tr>
-        <tr>
-            <td id="t50" class="bb" contenteditable="true"></td>
-            <td id="t51" class="bb" contenteditable="true"></td>
-            <td id="t52" class="bb br" contenteditable="true"></td>
-            <td id="t53" class="bb" contenteditable="true"></td>
-            <td id="t54" class="bb" contenteditable="true"></td>
-            <td id="t55" class="bb br" contenteditable="true"></td>
-            <td id="t56" class="bb" contenteditable="true"></td>
-            <td id="t57" class="bb" contenteditable="true"></td>
-            <td id="t58" class="bb" contenteditable="true"></td>
-        </tr>
-        <tr>
-            <td id="t60" contenteditable="true"></td>
-            <td id="t61" contenteditable="true"></td>
-            <td id="t62" class="br" contenteditable="true"></td>
-            <td id="t63" contenteditable="true"></td>
-            <td id="t64" contenteditable="true"></td>
-            <td id="t65" class="br" contenteditable="true"></td>
-            <td id="t66" contenteditable="true"></td>
-            <td id="t67" contenteditable="true"></td>
-            <td id="t68" contenteditable="true"></td>
-        </tr>
-        <tr>
-            <td id="t70" contenteditable="true"></td>
-            <td id="t71" contenteditable="true"></td>
-            <td id="t72" class="br" contenteditable="true"></td>
-            <td id="t73" contenteditable="true"></td>
-            <td id="t74" contenteditable="true"></td>
-            <td id="t75" class="br" contenteditable="true"></td>
-            <td id="t76" contenteditable="true"></td>
-            <td id="t77" contenteditable="true"></td>
-            <td id="t78" contenteditable="true"></td>
-        </tr>
-        <tr>
-            <td id="t80" contenteditable="true"></td>
-            <td id="t81" contenteditable="true"></td>
-            <td id="t82" class="br" contenteditable="true"></td>
-            <td id="t83" contenteditable="true"></td>
-            <td id="t84" contenteditable="true"></td>
-            <td id="t85" class="br" contenteditable="true"></td>
-            <td id="t86" contenteditable="true"></td>
-            <td id="t87" contenteditable="true"></td>
-            <td id="t88" contenteditable="true"></td>
-        </tr>
-    </table>
-    <button id="solvebtn">Solve</button>
-    <button id="clearbtn">Clear</button>
-    Animated:
-    <input type="checkbox" id="animatedcheckbox">
-
+    <div class="container">
+        <h1>Sudoku</h1>
+        <div class="table">
+            <table>
+                <tr>
+                    <td id="t00" contenteditable="true"></td>
+                    <td id="t01" contenteditable="true"></td>
+                    <td id="t02" class="br" contenteditable="true"></td>
+                    <td id="t03" contenteditable="true"></td>
+                    <td id="t04" contenteditable="true"></td>
+                    <td id="t05" class="br" contenteditable="true"></td>
+                    <td id="t06" contenteditable="true"></td>
+                    <td id="t07" contenteditable="true"></td>
+                    <td id="t08" contenteditable="true"></td>
+                </tr>
+                <tr>
+                    <td id="t10" contenteditable="true"></td>
+                    <td id="t11" contenteditable="true"></td>
+                    <td id="t12" class="br" contenteditable="true"></td>
+                    <td id="t13" contenteditable="true"></td>
+                    <td id="t14" contenteditable="true"></td>
+                    <td id="t15" class="br" contenteditable="true"></td>
+                    <td id="t16" contenteditable="true"></td>
+                    <td id="t17" contenteditable="true"></td>
+                    <td id="t18" contenteditable="true"></td>
+                </tr>
+                <tr>
+                    <td id="t20" class="bb" contenteditable="true"></td>
+                    <td id="t21" class="bb" contenteditable="true"></td>
+                    <td id="t22" class="bb br" contenteditable="true"></td>
+                    <td id="t23" class="bb" contenteditable="true"></td>
+                    <td id="t24" class="bb" contenteditable="true"></td>
+                    <td id="t25" class="bb br" contenteditable="true"></td>
+                    <td id="t26" class="bb" contenteditable="true"></td>
+                    <td id="t27" class="bb" contenteditable="true"></td>
+                    <td id="t28" class="bb" contenteditable="true"></td>
+                </tr>
+                <tr>
+                    <td id="t30" contenteditable="true"></td>
+                    <td id="t31" contenteditable="true"></td>
+                    <td id="t32" class="br" contenteditable="true"></td>
+                    <td id="t33" contenteditable="true"></td>
+                    <td id="t34" contenteditable="true"></td>
+                    <td id="t35" class="br" contenteditable="true"></td>
+                    <td id="t36" contenteditable="true"></td>
+                    <td id="t37" contenteditable="true"></td>
+                    <td id="t38" contenteditable="true"></td>
+                </tr>
+                <tr>
+                    <td id="t40" contenteditable="true"></td>
+                    <td id="t41" contenteditable="true"></td>
+                    <td id="t42" class="br" contenteditable="true"></td>
+                    <td id="t43" contenteditable="true"></td>
+                    <td id="t44" contenteditable="true"></td>
+                    <td id="t45" class="br" contenteditable="true"></td>
+                    <td id="t46" contenteditable="true"></td>
+                    <td id="t47" contenteditable="true"></td>
+                    <td id="t48" contenteditable="true"></td>
+                </tr>
+                <tr>
+                    <td id="t50" class="bb" contenteditable="true"></td>
+                    <td id="t51" class="bb" contenteditable="true"></td>
+                    <td id="t52" class="bb br" contenteditable="true"></td>
+                    <td id="t53" class="bb" contenteditable="true"></td>
+                    <td id="t54" class="bb" contenteditable="true"></td>
+                    <td id="t55" class="bb br" contenteditable="true"></td>
+                    <td id="t56" class="bb" contenteditable="true"></td>
+                    <td id="t57" class="bb" contenteditable="true"></td>
+                    <td id="t58" class="bb" contenteditable="true"></td>
+                </tr>
+                <tr>
+                    <td id="t60" contenteditable="true"></td>
+                    <td id="t61" contenteditable="true"></td>
+                    <td id="t62" class="br" contenteditable="true"></td>
+                    <td id="t63" contenteditable="true"></td>
+                    <td id="t64" contenteditable="true"></td>
+                    <td id="t65" class="br" contenteditable="true"></td>
+                    <td id="t66" contenteditable="true"></td>
+                    <td id="t67" contenteditable="true"></td>
+                    <td id="t68" contenteditable="true"></td>
+                </tr>
+                <tr>
+                    <td id="t70" contenteditable="true"></td>
+                    <td id="t71" contenteditable="true"></td>
+                    <td id="t72" class="br" contenteditable="true"></td>
+                    <td id="t73" contenteditable="true"></td>
+                    <td id="t74" contenteditable="true"></td>
+                    <td id="t75" class="br" contenteditable="true"></td>
+                    <td id="t76" contenteditable="true"></td>
+                    <td id="t77" contenteditable="true"></td>
+                    <td id="t78" contenteditable="true"></td>
+                </tr>
+                <tr>
+                    <td id="t80" contenteditable="true"></td>
+                    <td id="t81" contenteditable="true"></td>
+                    <td id="t82" class="br" contenteditable="true"></td>
+                    <td id="t83" contenteditable="true"></td>
+                    <td id="t84" contenteditable="true"></td>
+                    <td id="t85" class="br" contenteditable="true"></td>
+                    <td id="t86" contenteditable="true"></td>
+                    <td id="t87" contenteditable="true"></td>
+                    <td id="t88" contenteditable="true"></td>
+                </tr>
+            </table>
+        </div>
+        <div class="controls">
+            <button id="solvebtn">Solve</button>
+            <button id="clearbtn">Clear</button>
+            <button id="animatebtn">Animate</button>
+        </div>
+    </div>
 </body>
 <script src="js/script.js"></script>
-
 </html>
