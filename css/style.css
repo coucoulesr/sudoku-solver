@@ -1,5 +1,6 @@
 html, body {
     width: 100%;
+    background: whitesmoke;
 }
 
 .container {
@@ -47,4 +48,8 @@ button {
     color: white;
     background-color: forestgreen;
     border: 2px inset darkolivegreen;
+}
+
+.hidden {
+    display: none;
 }

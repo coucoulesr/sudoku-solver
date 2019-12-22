@@ -11,13 +11,15 @@ function genEmptyBoard(n) {
 }
 
 class Sudoku {
-    constructor(board = genEmptyBoard(9), animated = false, speed = 10) {
+    constructor(board = genEmptyBoard(9), animated = false) {
         this.setBoard(board);
         this.drawBoard();
         this.isAnimated = animated;
-        this.speed = speed;
+        this._message = ""
         this._queue = [];
+        this._interval = null;
         this._cellsWithStyleAltered = [];
+        this._pauseAnimationFlag = false;        
     }
 
     setBoard(board) {
@@ -63,6 +65,10 @@ class Sudoku {
     }
 
     clearBoard() {
+        this._message = "";
+        this._queue = [];
+        clearInterval(this._interval);
+        this._interval = null;
         this.setBoard(genEmptyBoard(9))
         while (this._cellsWithStyleAltered.length) {
             const cell = this._cellsWithStyleAltered.pop();
@@ -71,6 +77,12 @@ class Sudoku {
             tcell.style.fontWeight = "400";
             tcell.style.fontSize = "1.125rem"
         }
+        document.querySelector("#solvebtn").classList.remove("hidden");
+        document.querySelector("#pausebtn").classList.add("hidden");
+        document.querySelector("#continuebtn").classList.add("hidden");
+        document.querySelector("#clearbtn").classList.remove("hidden");
+        document.querySelector("#animatebtn").classList.remove("hidden");
+        document.querySelector(".message").textContent = "";
     }
 
     drawBoard() {
@@ -89,23 +101,33 @@ class Sudoku {
     solve() {
         if (this._isValid()){
             if (this.isAnimated) {
-                let interval = setInterval(this._runQueue.bind(this), this.speed);
+                this._pauseAnimationFlag = false;
+                this._interval = setInterval(this._runQueue.bind(this), this.speed);
+                document.querySelector("#solvebtn").classList.toggle("hidden")
+                document.querySelector("#pausebtn").classList.toggle("hidden")
+                document.querySelector("#clearbtn").classList.toggle("hidden")
             }
             let t0 = performance.now()
-            if (this._canSolveSudokuFromCell(0, 0) && !this.isAnimated) {
-                this.drawBoard();
+            if (this._canSolveSudokuFromCell(0, 0)) {
+                let t1 = performance.now()
+                this._message = `Solution found in ${t1 - t0} ms.`
+                if (!this.isAnimated) {
+                    this.drawBoard(); 
+                    document.querySelector("#solvebtn").classList.add("hidden");
+                }
+            } else {
+                this._message = "No solution found."
             }
-            let t1 = performance.now()
-            if (this.isAnimated && this._queue.length == 0) {
-                clearInterval(interval);
-            }
-            console.log(`Solved in ${ t1 - t0 } ms.`)
         } else {
-            throw new Error("Invalid sudoku input. No solution can be found.")
+            this._message = "Invalid starting state for sudoku."
         }
+        document.querySelector(".message").textContent = this._message
     }
 
     _runQueue() {
+        if (this._pauseAnimationFlag) {
+            return 0;
+        }
         if (this._queue.length) {
             const instruction = this._queue.shift()
             const query = String(instruction.row).concat(String(instruction.col))
@@ -114,7 +136,16 @@ class Sudoku {
             } else {
                 document.querySelector("#t" + query).textContent = ""
             }
-        } else { 
+        } 
+        if (this._queue.length == 0) {
+            clearInterval(this._interval);
+            this._interval = null;
+            document.querySelector("#solvebtn").classList.add("hidden")
+            document.querySelector("#pausebtn").classList.add("hidden")
+            document.querySelector("#continuebtn").classList.add("hidden")
+            document.querySelector("#clearbtn").classList.remove("hidden")
+        }
+        else { 
             return 0
         }
     }
@@ -122,8 +153,8 @@ class Sudoku {
     _isValid() {
         for (let i = 0; i < this.board.length; i++) {
             let col = new Set();
+            let row = new Set();
             for (let j = 0; j < this.board.length; j++) {
-                let row = new Set();
                 if (this.board[i][j] != 0) {
                     if (row.has(this.board[i][j])) {
                         return false
@@ -218,6 +249,20 @@ document.querySelector("#solvebtn").addEventListener("click", () => {
     } catch(e) {
         console.error(e)
     }
+});
+
+document.querySelector("#pausebtn").addEventListener("click", () => {
+    sudoku._pauseAnimationFlag = true;
+    document.querySelector("#continuebtn").classList.toggle("hidden")
+    document.querySelector("#pausebtn").classList.toggle("hidden")
+    document.querySelector("#clearbtn").classList.toggle("hidden")
+});
+
+document.querySelector("#continuebtn").addEventListener("click", () => {
+    sudoku._pauseAnimationFlag = false;
+    document.querySelector("#pausebtn").classList.toggle("hidden")
+    document.querySelector("#pausebtn").classList.toggle("hidden")
+    document.querySelector("#clearbtn").classList.toggle("hidden")
 });
 
 document.querySelector("#clearbtn").addEventListener("click", () => {
