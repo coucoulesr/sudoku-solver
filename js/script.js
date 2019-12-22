@@ -11,9 +11,13 @@ function genEmptyBoard(n) {
 }
 
 class Sudoku {
-    constructor(board = genEmptyBoard(9)) {
+    constructor(board = genEmptyBoard(9), animated = false, speed = 10) {
         this.setBoard(board);
         this.drawBoard();
+        this.isAnimated = animated;
+        this.speed = speed;
+        this._queue = [];
+        this._cellsWithStyleAltered = [];
     }
 
     setBoard(board) {
@@ -40,8 +44,9 @@ class Sudoku {
         let board = genEmptyBoard(9)
         for (let row = 0; row < 9; row++) {
             for (let col = 0; col < 9; col++) {
-                let coords = String(row).concat(String(col));
-                let item = document.querySelector(String("#t" + coords)).textContent.trim()
+                const coords = String(row).concat(String(col));
+                const cell = document.querySelector(String("#t" + coords))
+                const item = cell.textContent.trim()
                 if (item == '') {
                     continue
                 }
@@ -49,6 +54,9 @@ class Sudoku {
                     throw new Error("All sudoku items must be integers.")
                 }
                 board[row][col] = Number(item)
+                cell.style.fontWeight = "bold";
+                cell.style.fontSize = "1.5rem";
+                this._cellsWithStyleAltered.push([row, col])
             }
         }
         this.setBoard(board);
@@ -56,6 +64,13 @@ class Sudoku {
 
     clearBoard() {
         this.setBoard(genEmptyBoard(9))
+        while (this._cellsWithStyleAltered.length) {
+            const cell = this._cellsWithStyleAltered.pop();
+            const query = String(cell[0]).concat(String(cell[1]));
+            const tcell = document.querySelector("#t" + query)
+            tcell.style.fontWeight = "400";
+            tcell.style.fontSize = "1.125rem"
+        }
     }
 
     drawBoard() {
@@ -73,14 +88,34 @@ class Sudoku {
 
     solve() {
         if (this._isValid()){
+            if (this.isAnimated) {
+                let interval = setInterval(this._runQueue.bind(this), this.speed);
+            }
             let t0 = performance.now()
-            if (this._canSolveSudokuFromCell(0, 0)) {
-                this.drawBoard()
+            if (this._canSolveSudokuFromCell(0, 0) && !this.isAnimated) {
+                this.drawBoard();
             }
             let t1 = performance.now()
-            console.log(`Solved in ${ t1 - t0}`)
+            if (this.isAnimated && this._queue.length == 0) {
+                clearInterval(interval);
+            }
+            console.log(`Solved in ${ t1 - t0 } ms.`)
         } else {
             throw new Error("Invalid sudoku input. No solution can be found.")
+        }
+    }
+
+    _runQueue() {
+        if (this._queue.length) {
+            const instruction = this._queue.shift()
+            const query = String(instruction.row).concat(String(instruction.col))
+            if (Number(instruction.value) != 0) {
+                document.querySelector("#t" + query).textContent = Number(instruction.value)
+            } else {
+                document.querySelector("#t" + query).textContent = ""
+            }
+        } else { 
+            return 0
         }
     }
 
@@ -137,9 +172,15 @@ class Sudoku {
         }
         for (let i = 1; i <= this.board.length; i++) {
             if (this._canPlaceNumberAt(i, row, col)) {
+                if (this.isAnimated) {
+                    this._queue.push({ value: i, row: row, col: col })
+                }
                 this.board[row][col] = i;
                 if (this._canSolveSudokuFromCell(row, col + 1)) {
                     return true;
+                }
+                if (this.isAnimated) {
+                    this._queue.push({value: 0, row: row, col: col})
                 }
                 this.board[row][col] = 0;
             }
@@ -183,3 +224,7 @@ document.querySelector("#clearbtn").addEventListener("click", () => {
     sudoku.clearBoard()
     sudoku.drawBoard()
 });
+
+document.querySelector("#animatedcheckbox").addEventListener("change", () => {
+    sudoku.isAnimated = !sudoku.isAnimated
+})
